@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jardin Botánico</title>
+
+    <!-- Enlaza tu archivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesJardinB.css') }}">
+
+    <!-- Enlaza tu archivo JS -->
+</head>
+<body>
+    <header class="item" style="background-image: url('https://www.ib.unam.mx/images/jb/portal/banner/jardin2.jpg')">
+        <h1>Jardín Botánico</h1>
+    </header>
+    
+  <nav>
+      <ul>
+          <li><a href="{{ url_for('index') }}">Inicio</a></li>
+          <li><a href="{{ url_for('paginaMUAC') }}">MUAC</a></li>
+          <li><a href="{{ url_for('paginaPabellon') }}">Pabellón de la Biodiversidad</a>        </li>
+          <li><a href="{{ url_for('paginaBN') }}">Biblioteca Nacional</a></li>
+          <li><a href="{{ url_for('paginaUNIVERSUM') }}">Universum</a></li>
+          <li><a href="{{ url_for('paginaMUCA') }}">MUCA</a></li>
+          <li><a href="{{ url_for('paginaJardinB') }}">Jardín Botánico</a></li>
+      </ul>
+  </nav>
+
+    <section id="acerca">
+        <div class="section-content">
+            <h2>Acerca de</h2>
+            <div class="columnas">            
+                <p>Las colecciones vivas del Jardín Botánico mantienen más de 1,600 especies de plantas nativas de los bosques, desiertos y selvas mexicanas.
+                    Descubre los diversos usos históricos y culturales de la diversidad vegetal y cómo puedes participar en su conservación.
+                    Conoce las interacciones entre plantas y animales, y cómo la investigación científica es una base para tener un mejor conocimiento y uso sostenible de los recursos naturales.</p>
+            </div>
+        </div>
+              <div class="contenedor">
+                 <img src="https://www.ib.unam.mx/images/ib/unidades-investigacion/jardin-botanico/banner/jardi-inv5.jpg" alt="Descripción de la imagen" class="imagen-pequena">
+              </div>
+        </div>
+    </section>
+
+    <section id="mision">
+        <div class="section-content">
+            <h2>Misión y visión</h2>
+            <div class="columnas">
+                <p>Llevar a cabo el descubrimiento, descripción y documentación sistematizada de la biodiversidad, realizando investigación científica sobre su origen y mantenimiento, su composición, distribución e interacciones, y su conservación y aprovechamiento sostenible para el bienestar de la sociedad. Albergar las Colecciones Biológicas Nacionales, custodiando, enriqueciendo y estudiando sus acervos, incluyendo sus datos asociados.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="horarios">
+        <div class="section-content">
+            <h2>Horarios y Costo</h2>
+            <div class="columnas">
+                <p>Lunes a viernes de 9:00 a 17:00 h.</p>
+                <p>Sábados de 9:00 a 15:00 h. </p>
+                <p>Cerrado durante los periodos vacacionales universitarios. </p>
+                <p>Entrada gratis.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="direccion">
+        <div class="section-content">
+            <h2>Dirección</h2>
+                <p>Tercer Circuito exterior, S/N</p> <p>Ciudad Universidad Coyoacán </p>
+                <p>Ciudad de México, México. C. P. 04510</p>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="section-content">
+            <h2>Contacto</h2>          
+            <div class="columnas">
+                <p>Tel: 55 56 22 90 47 </p>
+                <p>jbdifusion@ib.unam.mx</p>
+            </div>
+        </div>
+    </section>
+    
+    <div class="comments-container">
+        <h1>Comentarios</h1>
+		<ul id="comments-list" class="comments-list">
+            {% for comentario in comentarios %}
+            <li>
+				<div class="comment-main-level">
+					<!-- Contenedor del Comentario -->
+					<div class="comment-box">
+						<div class="comment-head">
+							
+                            <h6 class="comment-name by-author"><a>{{comentario[0]}}:  {{comentario[1]}}</a></h6>
+							<span>{{comentario[2]}}</span>
+						</div>
+						<div class="comment-content">{{comentario[3]}}</div>
+					</div>
+				</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="forms-container">
+        <form action="/agregar_comentario" method="post">
+            <label for="usuario">Usuario:</label>
+            <input type="text" name="usuario" required>
+            <br>
+            <label for="comentario">Comentario:</label>
+            <textarea name="comentario" required></textarea>
+            <br>
+            <button type="submit">Agregar Comentario</button>
+        </form>
+
+        <form action="/eliminar_comentario" method="post">
+            <label for="comentario_id">ID de comentario:</label>
+            <input type="text" name="comentario_id" required>
+            <br>
+            <label for="usuario">Usuario:</label>
+            <textarea name="usuario" required></textarea>
+            <br>
+            <button type="submit">Eliminar Comentario</button>
+        </form>
+
+        <form action="/editar_comentario" method="post">
+            <label for="comentario_id">ID de comentario:</label>
+            <input type="text" name="comentario_id" required>
+            <br>
+            <label for="usuario">Usuario:</label>
+            <textarea name="usuario" required></textarea>
+            <br>
+            <label for="nuevo_comentario">Nuevo comentario:</label>
+            <textarea name="nuevo_comentario" required></textarea>
+            <br>
+            <button type="submit">Editar Comentario</button>
+        </form>
+    </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUCA</title>
+
+    <!-- Enlaza tu archivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesMUCA.css') }}">
+
+    <!-- Enlaza tu archivo JS -->
+</head>
+<body>
+    <header class="item" style="background-image: url('https://regeneracion.mx/wp-content/uploads/2019/09/muca.png')">
+        <h1>MUCA</h1>
+    </header>
+    
+  <nav>
+      <ul>
+          <li><a href="{{ url_for('index') }}">Inicio</a></li>
+          <li><a href="{{ url_for('paginaMUAC') }}">MUAC</a></li>
+          <li><a href="{{ url_for('paginaPabellon') }}">Pabellón de la Biodiversidad</a>        </li>
+          <li><a href="{{ url_for('paginaBN') }}">Biblioteca Nacional</a></li>
+          <li><a href="{{ url_for('paginaUNIVERSUM') }}">Universum</a></li>
+          <li><a href="{{ url_for('paginaMUCA') }}">MUCA</a></li>
+          <li><a href="{{ url_for('paginaJardinB') }}">Jardín Botánico</a></li>
+      </ul>
+  </nav>
+
+    <section id="acerca">
+        <div class="section-content">
+            <h2>Acerca de</h2>
+            <div class="columnas">            
+                <p>El Museo Universitario de Ciencias y Arte (MUCA) es una dependencia de la Universidad Nacional Autónoma de México (UNAM), fundada con el propósito de apoyar en la difusión de la cultura, las ciencias y el arte.
+                    El MUCA abrió sus puertas en 1960 y es el primer espacio construido en México proyectado para cumplir con las funciones de un museo que responde a las demandas de su comunidad.
+                    Con tres principios fundamentales: ser un museo dinámico con apertura a todas las variantes del arte, poseer un espíritu conciliador entre la ciencia, el arte y las humanidades, y no incluir una colección permanente.</p>
+            </div>
+        </div>
+              <div class="contenedor">
+                 <img src="https://muca.unam.mx/uploads/9/8/6/3/98630358/muca_orig.jpg" alt="Descripción de la imagen" class="imagen-pequena">
+              </div>
+        </div>
+    </section>
+
+    <section id="mision">
+        <div class="section-content">
+            <h2>Misión y visión</h2>
+            <div class="columnas">
+                <p>El MUCA es un espacio de diálogo y experimentación, abierto a la comunidad universitaria, que difunde el trabajo multidisciplinario entre la ciencia, el arte y las humanidades a través de exposiciones y programas paralelos, como un museo público y gratuito en el centro del campus universitario.
+                    Es promotor de la gestión, vinculación y colaboración entre estancias y dependencias universitarias para hacer uso del máximo recurso de la Universidad: el capital humano, científico, técnico y cultural mediante el conocimiento académico, los recursos intelectuales, las redes de colaboración, y de la colección artística, los acervos bibliográficos, fílmicos, fondos y bienes culturales del proyecto cultural de mayor relevancia en México: la Universidad Nacional Autónoma de México.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="horarios">
+        <div class="section-content">
+            <h2>Horarios y Costo</h2>
+            <div class="columnas">
+                <p>Abierto a público de martes a sábado de 10:00 a 18:00 hrs. </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="direccion">
+        <div class="section-content">
+            <h2>Dirección</h2>
+                <p>Circuito Interior Universitario s/n, Coyoacán, Cd. Universitaria, 04510 Ciudad de México  </p>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="section-content">
+            <h2>Contacto</h2>          
+            <div class="columnas">
+                <p><strong>teléfono:</strong> 55 5622 0212</p>
+                <p><strong>email:</strong> muca@unam.mx​</p>
+            </div>
+        </div>
+    </section>
+    
+    <div class="comments-container">
+        <h1>Comentarios</h1>
+		<ul id="comments-list" class="comments-list">
+            {% for comentario in comentarios %}
+            <li>
+				<div class="comment-main-level">
+					<!-- Contenedor del Comentario -->
+					<div class="comment-box">
+						<div class="comment-head">
+							
+                            <h6 class="comment-name by-author"><a>{{comentario[0]}}:  {{comentario[1]}}</a></h6>
+							<span>{{comentario[2]}}</span>
+						</div>
+						<div class="comment-content">{{comentario[3]}}</div>
+					</div>
+				</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="forms-container">
+        <form action="/agregar_comentario" method="post">
+            <label for="usuario">Usuario:</label>
+            <input type="text" name="usuario" required>
+            <br>
+            <label for="comentario">Comentario:</label>
+            <textarea name="comentario" required></textarea>
+            <br>
+            <button type="submit">Agregar Comentario</button>
+        </form>
+
+        <form action="/eliminar_comentario" method="post">
+            <label for="comentario_id">ID de comentario:</label>
+            <input type="text" name="comentario_id" required>
+            <br>
+            <label for="usuario">Usuario:</label>
+            <textarea name="usuario" required></textarea>
+            <br>
+            <button type="submit">Eliminar Comentario</button>
+        </form>
+
+        <form action="/editar_comentario" method="post">
+            <label for="comentario_id">ID de comentario:</label>
+            <input type="text" name="comentario_id" required>
+            <br>
+            <label for="usuario">Usuario:</label>
+            <textarea name="usuario" required></textarea>
+            <br>
+            <label for="nuevo_comentario">Nuevo comentario:</label>
+            <textarea name="nuevo_comentario" required></textarea>
+            <br>
+            <button type="submit">Editar Comentario</button>
+        </form>
+    </div>
+    </div>
+
+</body>
+</html>

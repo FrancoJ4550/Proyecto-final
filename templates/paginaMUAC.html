@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUAC</title>
+
+    <!-- Enlaza tu archivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesMUAC.css') }}">
+
+    <!-- Enlaza tu archivo JS -->
+</head>
+<body>
+    <header class="item" style="background-image: url('https://muac.unam.mx/assets/images/muac/muac_fachada_andujar_2023_web.jpg')">
+        <h1>MUAC</h1>
+    </header>
+    
+  <nav>
+      <ul>
+          <li><a href="{{ url_for('index') }}">Inicio</a></li>
+          <li><a href="{{ url_for('paginaMUAC') }}">MUAC</a></li>
+          <li><a href="{{ url_for('paginaPabellon') }}">Pabellón de la Biodiversidad</a>        </li>
+          <li><a href="{{ url_for('paginaBN') }}">Biblioteca Nacional</a></li>
+          <li><a href="{{ url_for('paginaUNIVERSUM') }}">Universum</a></li>
+          <li><a href="{{ url_for('paginaMUCA') }}">MUCA</a></li>
+          <li><a href="{{ url_for('paginaJardinB') }}">Jardín Botánico</a></li>
+      </ul>
+  </nav>
+
+    <section id="acerca">
+        <div class="section-content">
+            <h2>Acerca de</h2>
+            <div class="columnas">            
+                <p>Nuestra colección resguarda y estudia obras producidas a partir de 1952 —año en que se inauguró Ciudad Universitaria— por artistas radicados en México. Somos pioneros en la preservación de la memoria al revitalizar el coleccionismo en el país.</p> <p>Actualmente, contamos con 2185 obras de más de 300 artistas, 54 fondos y 5 colecciones documentales. Nos hemos convertido en un referente de la cultura visual nacional e internacional al ofrecer un programa artístico ambicioso. La imagen renovada y dinámica que proyectamos cristaliza nuestra vitalidad de acuerdo con la vanguardia en el mundo del arte.</p>
+            </div>
+        </div>
+              <div class="contenedor">
+                 <img src="https://muac.unam.mx/assets/images/MUAC_nocturno.jpg" alt="Descripción de la imagen" class="imagen-pequena">
+              </div>
+        </div>
+    </section>
+
+    <section id="mision">
+        <div class="section-content">
+            <h2>Misión y visión</h2>
+            <div class="columnas">
+                <p>Como museo universitario, nos dedicamos a coleccionar, preservar, investigar, exhibir y difundir arte contemporáneo. Somos un espacio donde se producen experiencias sensibles, afectivas y de conocimiento, que ofrecen a los diferentes públicos una diversidad de posibilidades para explorar su propia individualidad. Nuestro proyecto museístico se fundamenta en cinco líneas estratégicas.</p> <p>La Académica, que produce y difunde conocimiento crítico; la Curatorial, para generar plataformas y experiencias estéticas; la Pedagógica, que facilita el aprendizaje significativo y divulga el conocimiento; la Comunicacional, con la que pretendemos construir comunidades involucradas, y la Sostenibilidad, que nos permite establecer alianzas socialmente responsables.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="horarios">
+        <div class="section-content">
+            <h2>Horarios y Costo</h2>
+            <div class="columnas">
+                <p>Miércoles a domingo 11:00 a 18:00 horas</p>
+                <p>Lunes y martes     Cerrado</p>
+                <p>$40.00 público general</p>
+                <p>50% de descuento a comunidad UNAM, estudiantes y maestros (con credencial vigente)</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="direccion">
+        <div class="section-content">
+            <h2>Dirección</h2>
+                <p>Insurgentes Sur 3000</p> <p>Centro Cultural Universitario</p>
+                <p>Delegación Coyoacán</p> <p>C.P. 04510 Ciudad de México</p>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="section-content">
+            <h2>Contacto</h2>          
+            <div class="columnas">
+                <p>informes@muac.unam.mx +52 (55) 5622 6972</p>
+                <p>https://muac.unam.mx</p>
+            </div>
+        </div>
+    </section>
+    
+    <div class="comments-container">
+        <h1>Comentarios</h1>
+		<ul id="comments-list" class="comments-list">
+            {% for comentario in comentarios %}
+            <li>
+				<div class="comment-main-level">
+					<!-- Contenedor del Comentario -->
+					<div class="comment-box">
+						<div class="comment-head">
+							
+                            <h6 class="comment-name by-author"><a>{{comentario[0]}}:  {{comentario[1]}}</a></h6>
+							<span>{{comentario[2]}}</span>
+						</div>
+						<div class="comment-content">{{comentario[3]}}</div>
+					</div>
+				</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="forms-container">
+        <form action="/agregar_comentario" method="post">
+            <label for="usuario">Usuario:</label>
+            <input type="text" name="usuario" required>
+            <br>
+            <label for="comentario">Comentario:</label>
+            <textarea name="comentario" required></textarea>
+            <br>
+            <button type="submit">Agregar Comentario</button>
+        </form>
+
+        <form action="/eliminar_comentario" method="post">
+            <label for="comentario_id">ID de comentario:</label>
+            <input type="text" name="comentario_id" required>
+            <br>
+            <label for="usuario">Usuario:</label>
+            <textarea name="usuario" required></textarea>
+            <br>
+            <button type="submit">Eliminar Comentario</button>
+        </form>
+
+        <form action="/editar_comentario" method="post">
+            <label for="comentario_id">ID de comentario:</label>
+            <input type="text" name="comentario_id" required>
+            <br>
+            <label for="usuario">Usuario:</label>
+            <textarea name="usuario" required></textarea>
+            <br>
+            <label for="nuevo_comentario">Nuevo comentario:</label>
+            <textarea name="nuevo_comentario" required></textarea>
+            <br>
+            <button type="submit">Editar Comentario</button>
+        </form>
+    </div>
+    </div>
+
+</body>
+</html>

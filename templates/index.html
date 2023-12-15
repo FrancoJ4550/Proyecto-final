@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museos UNAM</title>
+
+    <!-- Enlaza tu archivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <!-- Enlaza tu archivo JS -->
+    <script type="module" src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</head>
+<body>    
+    <main>
+        <ul class='slider'>
+        <li class='item' style="background-image: url('https://unamcloud.blob.core.windows.net/eventos/26869/MUAC.jpg')">
+            <div class='content'>
+            <h2 class='title'>MUAC</h2>
+            <p class='description'> El Museo Universitario de Arte Contemporáneo es un centro de construcción del conocimiento y encuentro, donde se da una conversación sobre la sociedad, la academia y la historia del arte.  </p>
+            <a href="{{ url_for('paginaMUAC') }}"><button>Conoce más</button></a>
+            </div>
+        </li>
+        <li class='item' style="background-image: url('https://www.illux.com.mx/wp-content/uploads/2021/02/PABELLON_1.jpg')">
+            <div class='content'>
+            <h2 class='title'>Pabellón nacional de la biodiversidad</h2>
+            <p class='description'> Descubre la gran riqueza de especies mexicanas a través de un viaje por las colecciones nacionales del Instituto de Biología.  </p>
+            <a href="{{ url_for('paginaPabellon') }}"><button>Conoce más</button></a>
+            </div>
+        </li>
+        <li class='item' style="background-image: url('https://www.dgcs.unam.mx/boletin/bdboletin/multimedia/WAV170901/571(1).jpg')">
+            <div class='content'>
+            <h2 class='title'>Biblioteca Nacional</h2>
+            <p class='description'> La Biblioteca Nacional de México busca integrar, custodiar, preservar y disponer para su consulta las colecciones que resguarda.        </p>
+            <a href="{{ url_for('paginaBN') }}"><button>Conoce más</button></a>
+            </div>
+        </li>
+        <li class='item' style="background-image: url('https://www.gaceta.unam.mx/wp-content/uploads/2022/12/221205-com3-f2-Se-instala-la-Catedra-UNESCO-de-Diplomacia-y-patrimonio-ciencia.jpg')">
+            <div class='content'>
+            <h2 class='title'>Universum</h2>
+            <p class='description'>
+                En UNIVERSUM se divulga la ciencia en un espacio de encuentro interactivo, experimental, creativo e inclusivo, a través de experiencias museológicas y educativas de gran impacto sensorial, educativo y cultural.
+            </p>
+            <a href="{{ url_for('paginaUNIVERSUM') }}"><button>Conoce más</button></a>
+            </div>
+        </li>
+        <li class='item' style="background-image: url('https://img.chilango.com/2021/10/UNAM_BH-14-1024x682.jpg')">
+            <div class='content'>
+            <h2 class='title'>MUCA</h2>
+            <p class='description'>
+                Es un museo dinámico con apertura a todas las variantes del arte, posee un espíritu conciliador entre la ciencia, el arte y las humanidades, y no aloja una colección permanente.
+            </p>
+            <a href="{{ url_for('paginaMUCA') }}"><button>Conoce más</button></a>
+            </div>
+        </li>
+        <li class='item' style="background-image: url('https://www.gaceta.unam.mx/wp-content/uploads/2022/11/221114-com1-des-f1-proyecto-conjunto-IB-Jardin-Botanico-Berlin.jpg')">
+            <div class='content'>
+            <h2 class='title'>Jardín botánico</h2>
+            <p class='description'> Las colecciones vivas del Jardín Botánico mantienen más de 1,600 especies de plantas nativas de los bosques, desiertos y selvas mexicanas. Descubre los diversos usos históricos y culturales de la diversidad vegetal y cómo puedes participar en su conservación.
+    
+        </p>
+        <a href="{{ url_for('paginaJardinB') }}"><button>Conoce más</button></a>
+    </div>
+        </li>
+        </ul>
+        <nav class='nav'>
+        <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
+        <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
+        </nav>
+    </main>
+</body>  
+</html>

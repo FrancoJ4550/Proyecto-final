@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Nacional de México</title>
+
+    <!-- Enlaza tu archivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesBN.css') }}">
+
+    <!-- Enlaza tu archivo JS -->
+</head>
+<body>
+    <header class="item" style="background-image: url('https://bnm.iib.unam.mx/images/bnm/servicios/consulta_prestamo.jpg')">
+        <h1>Biblioteca Nacional de México</h1>
+    </header>
+    
+  <nav>
+      <ul>
+          <li><a href="{{ url_for('index') }}">Inicio</a></li>
+          <li><a href="{{ url_for('paginaMUAC') }}">MUAC</a></li>
+          <li><a href="{{ url_for('paginaPabellon') }}">Pabellón de la Biodiversidad</a>        </li>
+          <li><a href="{{ url_for('paginaBN') }}">Biblioteca Nacional</a></li>
+          <li><a href="{{ url_for('paginaUNIVERSUM') }}">Universum</a></li>
+          <li><a href="{{ url_for('paginaMUCA') }}">MUCA</a></li>
+          <li><a href="{{ url_for('paginaJardinB') }}">Jardín Botánico</a></li>
+      </ul>
+  </nav>
+
+    <section id="acerca">
+        <div class="section-content">
+            <h2>Acerca de</h2>
+            <div class="columnas">            
+                <p>La Biblioteca Nacional de México cuenta con una sala de consulta y salas especializadas para atender el préstamo de sus colecciones.
+                    Por tratarse de una biblioteca que conserva y resguarda el patrimonio bibliográfico y documental de la Nación, su estantería es cerrada y no cuenta con el servicio de préstamo externo ni interbibliotecario.
+                    Para acceder al préstamo y consulta de los materiales es indispensable.</p>
+                    <p>Presentar la credencial de la Biblioteca Nacional.</p>
+                    <p>Cumplir con lo estipulado en el Reglamento General.</p>
+                    <p>Observar lo señalado en el Procedimiento de Prestamo</p>
+            </div>
+        </div>
+              <div class="contenedor">
+                 <img src="https://bnm.iib.unam.mx/images/servicios/Visita-guiada/Estanteria_056.jpg" alt="Descripción de la imagen" class="imagen-pequena">
+              </div>
+        </div>
+    </section>
+
+    <section id="mision">
+        <div class="section-content">
+            <h2>Misión y visión</h2>
+            <div class="columnas">
+                <p>Integrar, custodiar, preservar y disponer para su consulta las colecciones que resguarda.
+                    Adquirir por Depósito Legal, compra, donación o canje los recursos documentales editados en el país y los publicados en el extranjero por mexicanos, así como aquellos que traten sobre México.
+                    Formar la Bibliografía Mexicana. Legar a las generaciones futuras el patrimonio bibliográfico y documental mexicano.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="horarios">
+        <div class="section-content">
+            <h2>Horarios y Costo</h2>
+            <div class="columnas">
+                <p>La Biblioteca ofrece servicio en el Fondo Contemporáneo de lunes a viernes de 9 a 20 horas, en el Fondo Reservado de lunes a viernes de 9 a 19.30 horas. Sábados, domingos y días festivos de 9 a 15 horas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="direccion">
+        <div class="section-content">
+            <h2>Dirección</h2>
+                <p>Circuito Centro Cultural,</p> <p>Ciudad Universitaria, Delegación Coyoacán,</p>
+                <p>C. P. 04510, Ciudad de México, México </p>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="section-content">
+            <h2>Contacto</h2>          
+            <div class="columnas">
+                <p>Si llama del interior de México, marque: (01-55) + ocho dígitos.    </p>
+                <p>Si llama desde Estados Unidos, marque: (011-52-55) + ocho dígitos.   </p>
+            </div>
+        </div>
+    </section>
+    
+    <div class="comments-container">
+        <h1>Comentarios</h1>
+		<ul id="comments-list" class="comments-list">
+            {% for comentario in comentarios %}
+            <li>
+				<div class="comment-main-level">
+					<!-- Contenedor del Comentario -->
+					<div class="comment-box">
+						<div class="comment-head">
+							
+                            <h6 class="comment-name by-author"><a>{{comentario[0]}}:  {{comentario[1]}}</a></h6>
+							<span>{{comentario[2]}}</span>
+						</div>
+						<div class="comment-content">{{comentario[3]}}</div>
+					</div>
+				</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="forms-container">
+        <form action="/agregar_comentario" method="post">
+            <label for="usuario">Usuario:</label>
+            <input type="text" name="usuario" required>
+            <br>
+            <label for="comentario">Comentario:</label>
+            <textarea name="comentario" required></textarea>
+            <br>
+            <button type="submit">Agregar Comentario</button>
+        </form>
+
+        <form action="/eliminar_comentario" method="post">
+            <label for="comentario_id">ID de comentario:</label>
+            <input type="text" name="comentario_id" required>
+            <br>
+            <label for="usuario">Usuario:</label>
+            <textarea name="usuario" required></textarea>
+            <br>
+            <button type="submit">Eliminar Comentario</button>
+        </form>
+
+        <form action="/editar_comentario" method="post">
+            <label for="comentario_id">ID de comentario:</label>
+            <input type="text" name="comentario_id" required>
+            <br>
+            <label for="usuario">Usuario:</label>
+            <textarea name="usuario" required></textarea>
+            <br>
+            <label for="nuevo_comentario">Nuevo comentario:</label>
+            <textarea name="nuevo_comentario" required></textarea>
+            <br>
+            <button type="submit">Editar Comentario</button>
+        </form>
+    </div>
+    </div>
+
+</body>
+</html>

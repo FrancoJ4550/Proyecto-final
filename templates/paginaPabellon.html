@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pabellon Nacional de la Biodiversidad</title>
+
+    <!-- Enlaza tu archivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesMUAC.css') }}">
+
+    <!-- Enlaza tu archivo JS -->
+</head>
+<body>
+    <header class="item" style="background-image: url('https://www.ib.unam.mx/images/pabio/como-llegar/banner/herbario.jpeg')">
+        <h1>Pabellon Nacional de la Biodiversidad</h1>
+    </header>
+    
+  <nav>
+      <ul>
+          <li><a href="{{ url_for('index') }}">Inicio</a></li>
+          <li><a href="{{ url_for('paginaMUAC') }}">MUAC</a></li>
+          <li><a href="{{ url_for('paginaPabellon') }}">Pabellón de la Biodiversidad</a>        </li>
+          <li><a href="{{ url_for('paginaBN') }}">Biblioteca Nacional</a></li>
+          <li><a href="{{ url_for('paginaUNIVERSUM') }}">Universum</a></li>
+          <li><a href="{{ url_for('paginaMUCA') }}">MUCA</a></li>
+          <li><a href="{{ url_for('paginaJardinB') }}">Jardín Botánico</a></li>
+      </ul>
+  </nav>
+
+    <section id="acerca">
+        <div class="section-content">
+            <h2>Acerca de</h2>
+            <div class="columnas">            
+                <p>El Pabellón Nacional de la Biodiversidad es un espacio que resguarda parte de las Colecciones Nacionales del Instituto de Biología. Surgió ante la necesidad de ampliar los espacios de las colecciones que representan la biodiversidad mexicana y fue posible gracias a la donación de la Fundación Carlos Slim. La estrecha colaboración entre los especialistas del Instituto y un equipo de trabajo de la Fundación Slim permitió definir temas y recursos de las exposiciones del Pabellón que se suman a las áreas de investigación y laboratorios que también estarán alojados en el edificio.</p>
+            </div>
+        </div>
+              <div class="contenedor">
+                 <img src="https://www.ib.unam.mx/images/pabio/acerca-de-pabio/historia/banner/historia-1.jpg" alt="Descripción de la imagen" class="imagen-pequena">
+              </div>
+        </div>
+    </section>
+
+    <section id="mision">
+        <div class="section-content">
+            <h2>Misión y visión</h2>
+            <div class="columnas">
+                <p>Inspirar y provocar una relación armoniosa con el mundo natural a través de experiencias basadas en la curiosidad y la indagación dejando un impacto significativo para una sociedad informada, responsable y conectada con la naturaleza.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="horarios">
+        <div class="section-content">
+            <h2>Horarios y Costo</h2>
+            <div class="columnas">
+                <p>Martes a Domingo de 10:00 a 16:00 h</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="direccion">
+        <div class="section-content">
+            <h2>Dirección</h2>
+                <p>Cto. Centro Cultural, C.U., Coyoacán, 04510 Ciudad de México, CDMX</p>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="section-content">
+            <h2>Contacto</h2>          
+            <div class="columnas">
+                <p><strong>Teléfono:</strong>  55 5622 8222 ext. 82579</p>
+                <p><strong>Correo:</strong>   pabio@ib.unam.mx</p>
+            </div>
+        </div>
+    </section>
+    
+    <div class="comments-container">
+        <h1>Comentarios</h1>
+		<ul id="comments-list" class="comments-list">
+            {% for comentario in comentarios %}
+            <li>
+				<div class="comment-main-level">
+					<!-- Contenedor del Comentario -->
+					<div class="comment-box">
+						<div class="comment-head">
+							
+                            <h6 class="comment-name by-author"><a>{{comentario[0]}}:  {{comentario[1]}}</a></h6>
+							<span>{{comentario[2]}}</span>
+						</div>
+						<div class="comment-content">{{comentario[3]}}</div>
+					</div>
+				</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="forms-container">
+        <form action="/agregar_comentario" method="post">
+            <label for="usuario">Usuario:</label>
+            <input type="text" name="usuario" required>
+            <br>
+            <label for="comentario">Comentario:</label>
+            <textarea name="comentario" required></textarea>
+            <br>
+            <button type="submit">Agregar Comentario</button>
+        </form>
+
+        <form action="/eliminar_comentario" method="post">
+            <label for="comentario_id">ID de comentario:</label>
+            <input type="text" name="comentario_id" required>
+            <br>
+            <label for="usuario">Usuario:</label>
+            <textarea name="usuario" required></textarea>
+            <br>
+            <button type="submit">Eliminar Comentario</button>
+        </form>
+
+        <form action="/editar_comentario" method="post">
+            <label for="comentario_id">ID de comentario:</label>
+            <input type="text" name="comentario_id" required>
+            <br>
+            <label for="usuario">Usuario:</label>
+            <textarea name="usuario" required></textarea>
+            <br>
+            <label for="nuevo_comentario">Nuevo comentario:</label>
+            <textarea name="nuevo_comentario" required></textarea>
+            <br>
+            <button type="submit">Editar Comentario</button>
+        </form>
+    </div>
+    </div>
+
+</body>
+</html>
